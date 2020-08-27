@@ -1,8 +1,10 @@
 package com.online.study2020.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
+
+import java.lang.reflect.Field;
+import java.util.Date;
 
 @Data
 public class User {
@@ -12,4 +14,16 @@ public class User {
     private Integer age;
     private String name;
     private String email;
+
+
+
+    @TableField(fill = FieldFill.INSERT)//添加时自动填充
+    private Date createTime;
+    @TableField(fill = FieldFill.INSERT_UPDATE)
+    private Date updateTime;
+
+    @Version  //乐观锁用到的版本号
+    @TableField(fill = FieldFill.INSERT)//添加时自动填充
+    private Integer version;
+
 }
